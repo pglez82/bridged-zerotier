@@ -1,7 +1,7 @@
 # bridged-zerotier
 This projects show to set up a VPN given that we have access to a Linux machine inside the network and we do not have access to the router or other network configuration.
 We are going to use the free service [ZeroTier](https://www.zerotier.com).
-##First step. Install and configure the ZeroTier Client
+## First step. Install and configure the ZeroTier Client
 In this step we just need to follow the instructions in the ZeroTier web page. Open an ssh session to your server and type:
 ```
 curl -s https://install.zerotier.com/ | sudo bash
@@ -21,7 +21,7 @@ gateway 192.168.3.1
 ips for vpn clients 192.168.3.221-192.168.3.250
 ```
 In the Managed Routes we should type (for my case scenario) 192.168.3.0/24, because that is the network I want to access.
-##Second step. Configure the bridge.
+## Second step. Configure the bridge.
 We need to configure a bridge in order to be able to access the local network resources. For that we need to install in the server the package bridge-utils.
 ```
 apt-get install bridge-utils
