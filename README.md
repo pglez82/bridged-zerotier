@@ -16,7 +16,7 @@ Once that our server inside the network is joined to the virtual network it shou
 For the rest of the clients that will join the network we need to configure which IPs are they going to get. We should configure this in the IPv4 Auto-Assign section. For instance my network has the following configuration.
 ```
 vpn server ip 192.168.3.251
-network 192.168.3.0
+network 192.168.3.0/24
 gateway 192.168.3.1
 ips for vpn clients 192.168.3.221-192.168.3.250
 ```
