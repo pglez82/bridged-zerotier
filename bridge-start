@@ -1,0 +1,34 @@
+#!/bin/bash
+LAN_INT="eth0" #Internal LAN Interface
+BR_INT="br0"  #Bridge Interface
+ZT_INT="zt7nnns3ck" #ZeroTier Interface
+
+BRIDGE_IP="192.168.3.251/24"
+GATEWAY_IP="192.168.3.1"
+
+SLEEP_TIMER="5s"
+RUN_TIME=`date`
+#Delay Timer to give the system a chance to finish booting
+sleep $SLEEP_TIMER
+
+echo $RUN_TIME > /var/log/bridge.log
+
+#Disable Interfaces, Remove IP addresses
+echo "Disabling Interface" >> /var/log/bridge.log
+/sbin/ifconfig $LAN_INT down >> /var/log/bridge.log
+/sbin/ifconfig $ZT_INT down >> /var/log/bridge.log
+/sbin/ip addr flush dev $LAN_INT >> /var/log/bridge.log
+/sbin/ip addr flush dev $ZT_INT >> /var/log/bridge.log
+
+echo "Setting up Bridging..." >> /var/log/bridge.log
+
+/sbin/brctl addbr $BR_INT >> /var/log/bridge.log
+/sbin/brctl addif $BR_INT $ZT_INT $LAN_INT >> /var/log/bridge.log
+
+/sbin/ifconfig $LAN_INT promisc up >> /var/log/bridge.log
+/sbin/ifconfig $ZT_INT promisc up >> /var/log/bridge.log
+/sbin/ifconfig $BR_INT up >> /var/log/bridge.log
+
+/sbin/ip addr add $BRIDGE_IP dev $BR_INT >> /var/log/bridge.log
+/sbin/route add default gateway $GATEWAY_IP
+echo "Finished!" >> /var/log/bridge.log
