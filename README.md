@@ -27,7 +27,7 @@ We need to configure a bridge in order to be able to access the local network re
 apt-get install bridge-utils
 ```
 Edit the script bridge-start being carefull when adjusting the values of LAN_INT, BR_INT, ZT_INT, BRIDGE_IP and GATEWAY_IP. We can use ifconfig to get the first LAN_IT and ZT_INT. 
-We can move know this script and the other (that we do not need to modify to an appropiate directory.
+We can move know this script and the others (that we do not need to modify) to an appropiate directory.
 ```
 mv bridge-start /usr/local/bin
 mv make-tap /usr/local/bin
