@@ -36,7 +36,7 @@ mv bridge-start /usr/local/bin
 mv make-tap /usr/local/bin
 mv startvpn.sh /usr/local/bin
 ```
-Set the execution flag to all the scripts using chmod +x scriptname
+Set the execution flag to all the scripts using `chmod +x scriptname`
 Now we are going to use crontab to start our script after rebooting (maybe it would have been better to create another service, but this is simpler).
 ```
 crontab -e
@@ -44,6 +44,11 @@ crontab -e
 Write in the last line
 ```
 @reboot  /usr/local/bin/startvpn.sh
+```
+Finally we need to remove the IP to the eth0 interface as the br0 interface is going to get the IP. For that we need to modify the file `/etc/network/interfaces` and put there:
+```
+auto eth0
+iface eth0 inet manual
 ```
 Reboot the server and check with ifconfig that it creates all the interfaces (eth0, br0, zt.. and lo).
 Now you only need to install the zerotier client in other computers and simply join them to the same network. You should have access to all the 192.168.3.0 network and its services.
