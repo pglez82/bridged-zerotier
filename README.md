@@ -1,5 +1,5 @@
 # bridged-zerotier
-This projects show to set up a VPN given that we have access to a Linux machine inside the network and we do not have access to the router or other network configuration.
+This project show to set up a VPN given that we have access to a Linux machine inside the network and we do not have access to the router or other network configuration.
 We are going to use the free service [ZeroTier](https://www.zerotier.com).
 ## Initial situation
 Lets say we have a LAN with the configuration with IPs in the range `192.168.3.0/24`. The gateway is `192.168.3.1` and we have an Ubuntu Server machine with IP `192.168.3.251`. We will use this machine for accessing the local network. It will act as an VPN server.
